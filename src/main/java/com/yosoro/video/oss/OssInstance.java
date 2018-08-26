@@ -1,6 +1,5 @@
 package com.yosoro.video.oss;
 
-import com.aliyun.vod.upload.req.UploadVideoRequest;
 import com.aliyuncs.DefaultAcsClient;
 import com.aliyuncs.exceptions.ClientException;
 import com.aliyuncs.profile.DefaultProfile;
