@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yosoro.video.dao.UserMapper">
+    <select id="checkUserExist" parameterType="java.lang.String" resultType="java.lang.Integer">
+        select COUNT(*) from user_private where user_mail = #{mail};
+    </select>
+    <select id="addNewUser" statementType="CALLABLE" resultType="java.util.Map">
+        call add_new_user(#{mail},#{password},#{userName},#{result,mode=OUT,jdbcType=INTEGER});
+    </select>
+    <resultMap id="userMap" type="com.yosoro.video.domain.user.User">
+        <id property="id" column="user_id"/>
+        <result property="mail" column="user_mail"/>
+        <result property="password" column="pwd"/>
+        <result property="userName" column="user_name"/>
+        <result property="user_type" column="userType"/>
+        <result property="lastLogin" column="last_login"/>
+    </resultMap>
+    <select id="checkLoginValid" resultMap="userMap" parameterType="com.yosoro.video.domain.user.PrivateUser">
+        select * from user_private ,user_info where user_mail=#{mail} and pwd=#{password} and user_info.user_id =
+        user_private.user_id;
+    </select>
+    <select id="getUserById" resultMap="userMap" parameterType="java.lang.Integer">
+        select * from user_private ,user_info where user_info.user_id = user_private.user_id and user_info.user_id = #{id};
+    </select>
+</mapper>

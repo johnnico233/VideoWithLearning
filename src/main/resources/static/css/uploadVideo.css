@@ -1,0 +1,41 @@
+body{
+    background: #f3f3f3;
+}
+.my-container{
+    background: #fff;
+    width:1000px;
+    min-height:300px;
+    margin:100px auto 0 auto;
+    border-radius: 7px;
+}
+.my-container p span,.my-container p input,.my-container p textarea{
+    display:inline-block;
+}
+.my-container p span{
+    width:15%;
+    margin-left: 5%;
+}
+.my-container p input,.my-container p textarea{
+    width:70%;
+}
+h1{
+    color: #fff;
+    background: #424242;
+    margin: 15px 0;
+    padding: 5px 0 10px 10px;
+    border-radius: 6px 6px 0 0 ;
+}
+.upload-confirm{
+    margin-bottom: 15px;
+    width: 90px;
+    margin-left: 81%;
+}
+#selectBlock{
+    display: inline-block;
+    margin-left: 0;
+    width:78%;
+}
+.my-container select{
+    display:inline-block;
+    width:20%;
+}

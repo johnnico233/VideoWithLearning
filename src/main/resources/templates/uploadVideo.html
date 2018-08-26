@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>上传视频</title>
+        <meta charset="UTF-8"/>
+        <link th:href="'/css/core/bootstrap.min.css'" rel="stylesheet">
+        <link th:href="'/css/uploadVideo.css'" rel="stylesheet">
+    </head>
+    <body>
+    <div class="my-container">
+        <h1>视频上传</h1>
+        <p><span>视频名称</span><input type="text" name="videoName" class="form-control" style="margin-left: 4px;"></p>
+        <p><span style="vertical-align: top">视频描述</span>
+            <textarea rows="5" cols="10" name="videoDescribe" class="form-control"></textarea></p>
+        <p><span>视频类型</span>
+            <span id="selectBlock">
+                    <!--/*@thymesVar id="typeList" type="java.util.List"*/-->
+                    <select class="form-control father-type">
+                        <!--/*@thymesVar id="type" type="com.yosoro.video.domain.video.TypeList"*/-->
+                        <option th:each="type,iStat:${typeList}" th:text="${type.videoType.typeName}"
+                                th:value="${type.videoType.id}" th:selected="${iStat.index==1}?true:false"></option>
+                    </select>
+                <!--/*@thymesVar id="type" type="com.yosoro.video.domain.video.TypeList"*/-->
+                    <select th:each="type,iStat:${typeList}" th:style="${iStat.index}==0?'display:none':''"
+                            class="form-control sub-type">
+                        <!--/*@thymesVar id="subType" type="com.yosoro.video.domain.video.VideoType"*/-->
+                        <option th:each="subType,iStat:${type.subTypes}" th:text="${subType.typeName}"
+                                th:value="${subType.id}" th:selected="${iStat.index==1}?true:false"></option>
+                    </select>
+                </span>
+        </p>
+        <p><span>文件选择</span><input type="file" name="videoFile" class="form-control" style="border: none"></p>
+        <p><button class="btn btn-primary upload-confirm">确认</button></p>
+    </div>
+    <script th:src="'/js/core/jquery-3.2.1.js'"></script>
+    <script th:src="'/js/core/popper.min.js'"></script>
+    <script th:src="'/js/core/bootstrap.js'"></script>
+    <script src="/js/core/lib/aliyun-oss-sdk-5.2.0.min.js"></script>
+    <script src="/js/core/aliyun-upload-sdk-1.4.0.min.js"></script>
+    <script th:src="'/js/upload.js'"></script>
+    </body>
+</html>

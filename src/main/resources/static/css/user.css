@@ -1,0 +1,353 @@
+.main-container{
+    min-width:1000px;
+    margin:80px auto;
+    width:100%;
+    padding:0px 15px;
+}
+table{
+    width:100%;
+}
+tr{
+    background: #378194;
+}
+.left-block,.right-block{
+    display:inline-block;
+}
+.left-block{
+    width: 20%;
+    background: #378194;
+    color:#fff;
+    vertical-align: top;
+}
+
+.left-block .menu-title{
+    text-align: center;
+    background-color: #058472;
+    font-size: 20px;
+    padding: 6px 0;
+    margin-bottom: 0;
+    border-bottom: 1px solid #fff;
+}
+.menu-title:hover{
+    cursor: pointer;
+}
+.left-block ul{
+    list-style-type: none;
+}
+
+div.menu-list a{
+    display: block;
+    border-bottom: 1px solid #fff;
+    padding:5px 25px;
+    text-decoration: none;
+    color: #fff;
+}
+
+.right-block{
+    width:80%;
+    background: rgba(255, 255, 255, 0.94);
+    border: 1px solid #fff;
+    min-height: 550px;
+}
+.right-block  .menu-btn{
+    width:20px;
+    word-break: break-all;
+}
+
+.right-block h1{
+    background-color: #016c9f;
+    color:#fff;
+    margin-top: -2px;
+    padding: 5px 20px;
+}
+
+/*总览信息css*/
+.overview-user p,.overview-user ,.overview-follow h3,.user-manager h3{
+    margin:5px 20px;
+    padding: 5px 10px;
+}
+
+.overview-user h3,.overview-follow h3{
+    border-bottom: 1px solid #c9c9c9;
+    padding-bottom: 10px;
+}
+.overview-follow h3,.user-manager h3{
+    color:#fff;
+    background-color: #04699e;
+}
+.overview-user p{
+    padding-top:20px;
+}
+
+.overview-user >div >div{
+     display: inline-block;
+     width:70%;
+ }
+
+.overview-user >div >div span{
+    display:inline-block;
+    width: 30%;
+}
+.overview-user >div >div span:last-of-type{
+    width:60%;
+}
+.overview-user >div span{
+    display: inline-block;
+    width:21%;
+}
+.overview-user >div span:last-of-type{
+    width:79%;
+}
+
+.overview-user h3>button{
+    float:right;
+    width: 100px;
+    height: 40px;
+    margin-top: -5px;
+}
+.overview-user span{
+    font-size:20px;
+    font-weight: lighter;
+}
+
+.overview-user img{
+    width:200px;
+    height:200px;
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 10px;
+}
+.overview-user >p span{
+    display: block;
+}
+.overview-user >p span:last-of-type{
+    padding:10px 0;
+}
+
+
+.overview-follow,.user-manager{
+    border-top: 20px solid #fff;
+}
+
+.overview-follow >h3 >button{
+    text-decoration: none;
+    float: right;
+    margin-right: 10px;
+    width:75px;
+}
+
+.right-block table{
+    font-size: 20px;
+    margin: 10px auto;
+    font-weight: lighter;
+    width: 96%;
+}
+.right-block tr{
+    color:#000;
+    border-bottom: 1px solid #d5d3d3;
+    background-color: #fff;
+}
+
+.overview-follow th{
+    text-align: center;
+    padding:7px;
+    font-weight: lighter;
+}
+
+.overview-follow td{
+    text-align: center;
+    padding:5px;
+    font-weight: lighter;
+}
+
+.overview-follow td>img{
+    width:60px;
+    height:60px;
+    display: inline-block;
+}
+
+
+
+/*用户信息编辑和用户信息显示*/
+#user-info-show h3,#user-info-edit h3{
+    margin-right: 60px;
+}
+
+#user-info-show >p>span:last-of-type{
+    margin-right: 60px;
+}
+
+#user-info-edit >div >div span{
+    width:30%;
+    display: inline-block;
+}
+#user-info-edit >p >span{
+    display: inline-block;
+    width:20%
+}
+#user-info-edit input , #user-info-edit >div >div p:first-of-type span:last-of-type{
+    width:61%;
+    display: inline-block;
+}
+#user-info-edit >p input{
+    width:42%;
+    display: inline-block;
+}
+#user-info-edit textarea{
+    display: block;
+    width:62%;
+}
+#user-info-edit img{
+    width: 200px;
+    height: 200px;
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 10px;
+}
+
+#user-info-edit input[type='radio']{
+    width:5%;
+}
+#send-user-photo{
+    display: block;
+    margin: 10px 55px 0 55px;
+}
+#user-info-edit >div >div:nth-of-type(2) >p{
+    padding: 0;
+    font-weight: lighter;
+    color: #016c9f;
+    margin: 0;
+    text-align: center;
+    width: 195px;
+}
+#user-info-edit >div >div:nth-of-type(2) >p:nth-of-type(n+2){
+    color: red;
+}
+#user-info-edit .error-hint{
+    color:red;
+    display:none;
+}
+
+/*关注用户列表*/
+div.skip-block{
+    width: 600px;
+    margin: 0px auto;
+    padding: 10px 20px;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+div.skip-block input[type='number'],div.skip-block button,div.skip-block span{
+    margin:0px 10px;
+    display: inline-block;
+}
+div.skip-block span{
+    font-weight: lighter;
+    font-size: 18px;
+}
+div.skip-block input[type='number']{
+    width: 15%;
+    -webkit-appearance: none;
+}
+div.skip-block button{
+    margin-top: -5px;
+}
+div.skip-block button:first-of-type{
+    margin-left: 8%;
+}
+div.skip-block button:nth-of-type(2){
+    width:16%;
+}
+
+/*用户管理*/
+div.user-manager table,.user-vote-manager table{
+    font-weight: lighter;
+}
+
+div.user-manager th,div.user-vote-manager th{
+    text-align: center;
+    font-weight: lighter;
+    padding: 6px 0;
+}
+
+div.user-manager td:nth-of-type(n+2){
+    width:28%;
+    margin-left: 2%;
+    text-align: center;
+}
+div.user-manager td:nth-of-type(2),div.user-manager th:nth-of-type(2){
+    text-align: left;
+}
+div.user-manager td:nth-of-type(4){
+    width: 20%;
+}
+div.user-manager td:nth-of-type(n+5){
+    width:7%;
+}
+div.user-manager img{
+    width:60px;
+    height:60px;
+    margin:5px;
+}
+div.user-manager td a{
+    text-decoration: none;
+}
+td.user-id-hide{
+    display: none;
+}
+
+/*我的投票css*/
+.user-vote-manager td{
+    text-align: center;
+    font-weight: lighter;
+}
+.user-vote-manager tr>td:nth-of-type(n){
+    width: 33%;
+}
+.user-vote-manager tr>td:nth-of-type(n+3){
+    width:20%;
+}
+.user-vote-manager tr>th:nth-of-type(n+4){
+    width: 14%;
+}
+
+/*投票管理css*/
+.vote-manager td,.vote-manager th{
+    font-weight: lighter;
+    text-align: center;
+    padding: 10px 0;
+}
+.vote-manager td >a,.dustbin td>a{
+    text-decoration: none;
+}
+/*垃圾箱css*/
+.dustbin th,.dustbin td{
+    font-weight: lighter;
+    text-align: center;
+    padding: 10px 0;
+}
+/*我的管理*/
+.user-message th,.user-message td{
+    font-weight: lighter;
+    text-align: center;
+    padding: 10px 0;
+}
+.user-message td>a{
+    text-decoration: none;
+}
+/*投票管理*/
+.message-manager th,.message-manager td{
+    font-weight: lighter;
+    text-align: center;
+    padding:10px 0;
+}
+.message-manager td>a{
+    text-decoration: none;
+}
+/*垃圾箱css*/
+.dustbin td>img{
+    width: 60px;
+    height: 60px;
+    margin: 5px;
+}

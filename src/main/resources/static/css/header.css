@@ -1,0 +1,21 @@
+nav.my-header{
+    background:#4d4d4d;
+    color:#fff;
+}
+nav > .login-info,nav> p{
+    display: inline-block;
+}
+nav > .login-info p,nav > .login-info button{
+    display: inline-block;
+}
+.login-info button{
+    margin-left: 10px;
+}
+.signUp-block .error-hint,.login-block .login-error-hint{
+    color:red;
+    display:none;
+}
+
+.modal-footer p,.modal-footer button{
+    display: inline-block;
+}

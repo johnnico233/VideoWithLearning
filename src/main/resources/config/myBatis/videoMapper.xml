@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yosoro.video.dao.VideoMapper">
+    <insert id="addNewVideo" parameterType="com.yosoro.video.domain.video.Video">
+        insert into video (video_id,upload_time,video_name,video_describe,video_type)
+        values(#{videoId},now(),#{name},#{describe},#{videoType.id})
+    </insert>
+    <!--video field's result map-->
+    <resultMap id="videoMap" type="com.yosoro.video.domain.video.Video">
+        <id column="video_id" property="videoId"/>
+        <result column="video_name" property="name"/>
+        <result column="view_count" property="viewCount"/>
+        <result column="upload_time" property="uploadTime"/>
+        <result column="video_describe" property="describe"/>
+    </resultMap>
+    <select id="getVideoById" resultMap="videoMap" parameterType="java.lang.String">
+        select * from video where video_id = #{id};
+    </select>
+    <!--videoType's result map-->
+    <resultMap id="videoTypeMap" type="com.yosoro.video.domain.video.VideoType">
+        <id property="id" column="type_id"/>
+        <result property="typeName" column="type_name"/>
+    </resultMap>
+    <!--videoList's result map-->
+    <resultMap id="videoListMap" type="com.yosoro.video.domain.video.TypeList">
+        <association property="videoType" resultMap="videoTypeMap"/>
+        <collection property="subTypes" select="getVideoSubTypeList" javaType="java.util.List" column="type_id"/>
+    </resultMap>
+    <resultMap id="videoListMapByRange" type="com.yosoro.video.domain.video.TypeList">
+        <association property="videoType" resultMap="videoTypeMap"/>
+        <collection property="subTypes" select="getVideoSubTypeListByRange" javaType="java.util.List"
+                    column="{id=type_id,start=idx,end=l}"/>
+    </resultMap>
+    <!--select the video type with it's sub types-->
+    <select id="getAllVideoTypeList" resultMap="videoListMap">
+        select * from video_type where father_id is null;
+    </select>
+    <select id="getAllVideoTypeListByRange" resultMap="videoListMapByRange" parameterType="java.lang.Integer">
+        select *,#{start} as idx,3 as l from video_type where father_id is null limit #{start},3;
+    </select>
+    <!--select the video sub type-->
+    <select id="getVideoSubTypeList" resultMap="videoTypeMap" parameterType="java.lang.Long">
+        select * from video_type where father_id = #{id}
+    </select>
+    <select id="getVideoSubTypeListByRange" resultMap="videoTypeMap" parameterType="java.util.Map">
+        select * from video_type where father_id = #{id} limit #{start},#{end};
+    </select>
+    <!--update the video info-->
+    <update id="updateVideoInfo" parameterType="com.yosoro.video.domain.video.Video">
+        update video set
+        <trim suffixOverrides=",">
+            <if test="#{name}!=null">video_name = #{name},</if>
+            <if test="#{describe}!=null">video_describe = #{describe},</if>
+            <if test="#{videoType}!=null">video_type = #{videoType.id},</if>
+        </trim>
+        where video_id = #{videoId}
+    </update>
+    <!--delete the video info-->
+    <delete id="deleteVideoInfo" parameterType="java.lang.String">
+        delete from video where video_id = #{videoId}
+    </delete>
+    <!--add new video type-->
+    <insert id="addNewVideoType">
+        insert into video_type (type_id,type_name,father_id) values (#{typeId},#{typeName},#{fatherId})
+    </insert>
+    <!--update the video type-->
+    <update id="updateVideoType">
+        update video_type set type_name = #{name} where type_id = #{id}
+    </update>
+    <!--delete the video type-->
+    <select id="deleteVideoType" statementType="CALLABLE">
+        call delete_video(#{videoId},#{result,mode=OUT,jdbcType=INTEGER});
+    </select>
+
+</mapper>
