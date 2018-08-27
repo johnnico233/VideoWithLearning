@@ -1,10 +1,14 @@
 package com.yosoro.video.domain.video;
 
+import java.util.Date;
+
 public class VideoType {
     private long id;
     private String typeName;
     private String image;
     private String description;
+    private Date createTime;
+    private int count;
 
     public VideoType(long id, String typeName) {
         this.id = id;
@@ -45,6 +49,22 @@ public class VideoType {
         this.description = description;
     }
 
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
     @Override
     public String toString() {
         return "VideoType{" +
@@ -52,6 +72,8 @@ public class VideoType {
                 ", typeName='" + typeName + '\'' +
                 ", image='" + image + '\'' +
                 ", description='" + description + '\'' +
+                ", createTime=" + createTime +
+                ", count=" + count +
                 '}';
     }
 }

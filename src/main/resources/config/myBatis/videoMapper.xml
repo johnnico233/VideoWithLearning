@@ -24,6 +24,8 @@
         <id property="id" column="type_id"/>
         <result property="typeName" column="type_name"/>
         <result property="image" column="image"/>
+        <result property="createTime" column="create_time"/>
+        <result property="count" column="sub_count"/>
     </resultMap>
     <!--videoList's result map-->
     <resultMap id="videoListMap" type="com.yosoro.video.domain.video.TypeList">
@@ -40,7 +42,7 @@
         select * from video_type where father_id is null;
     </select>
     <select id="getAllVideoTypeListByRange" resultMap="videoListMapByRange" parameterType="java.lang.Integer">
-        select *,#{start} as idx,3 as l from video_type where father_id is null limit #{start},3;
+        select *,#{start} as idx,3 as l from video_type where father_id is null and sub_count > 0 limit #{start},3;
     </select>
     <!--select the video sub type-->
     <select id="getVideoSubTypeList" resultMap="videoTypeMap" parameterType="java.lang.Long">
