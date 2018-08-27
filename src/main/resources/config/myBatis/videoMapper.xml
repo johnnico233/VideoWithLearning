@@ -14,6 +14,7 @@
         <result column="view_count" property="viewCount"/>
         <result column="upload_time" property="uploadTime"/>
         <result column="video_describe" property="describe"/>
+        <association property="videoType" resultMap="videoTypeMap"/>
     </resultMap>
     <select id="getVideoById" resultMap="videoMap" parameterType="java.lang.String">
         select * from video where video_id = #{id};
@@ -22,6 +23,7 @@
     <resultMap id="videoTypeMap" type="com.yosoro.video.domain.video.VideoType">
         <id property="id" column="type_id"/>
         <result property="typeName" column="type_name"/>
+        <result property="image" column="image"/>
     </resultMap>
     <!--videoList's result map-->
     <resultMap id="videoListMap" type="com.yosoro.video.domain.video.TypeList">
@@ -61,17 +63,20 @@
     <delete id="deleteVideoInfo" parameterType="java.lang.String">
         delete from video where video_id = #{videoId}
     </delete>
-    <!--add new video type-->
+    <!--operate for the video type-->
     <insert id="addNewVideoType">
         insert into video_type (type_id,type_name,father_id) values (#{typeId},#{typeName},#{fatherId})
     </insert>
-    <!--update the video type-->
     <update id="updateVideoType">
         update video_type set type_name = #{name} where type_id = #{id}
     </update>
-    <!--delete the video type-->
     <select id="deleteVideoType" statementType="CALLABLE">
         call delete_video(#{videoId},#{result,mode=OUT,jdbcType=INTEGER});
     </select>
-
+    <select id="getVideoListByTypeId" resultMap="videoMap" parameterType="java.lang.Long">
+        select * from video  where video_type = #{id};
+    </select>
+    <select id="getVideoTypeById" resultMap="videoTypeMap" parameterType="java.lang.Long">
+        select * from video_type where type_id = #{id};
+    </select>
 </mapper>

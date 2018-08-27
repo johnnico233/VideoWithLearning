@@ -1,0 +1,51 @@
+.main-container{
+    width:1000px;
+    margin:20px auto;
+    min-height:300px;
+    border-radius: 0.25em;
+}
+.main-container h1{
+    color:#fff;
+    background: gray;
+    padding: 5px 0px 10px 20px ;
+}
+.intro-block{
+    width:900px;
+    margin: 20px auto 10px auto;
+}
+.intro-block img,.intro-block div{
+    display:inline-block;
+}
+.intro-block img{
+    width:240px;
+    height:200px;
+    border:1px solid #000;
+    margin:0px 10px;
+}
+.intro-describe{
+    width:520px;
+    margin:0px 50px;
+    vertical-align: top;
+}
+.video-block{
+    width:900px;
+    margin:20px auto;  
+}
+.video-block h1{
+    background: #047e92;
+}
+.video-card{
+    width:30%;
+    margin-left:3%;
+    min-height:200px;
+    text-align: center;
+}
+.video-card a{
+    text-decoration: none;
+    color:#000;
+}
+.video-card img{
+    width:200px;
+    height:200px;
+    border:1px solid #000;
+}

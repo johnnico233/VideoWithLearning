@@ -7,6 +7,10 @@
     width:30%;
     margin-left:3%;
 }
+.video-card a{
+    text-decoration: none;
+    color: #000;
+}
 .video-block h1{
     color:#fff;
     background: #006983;

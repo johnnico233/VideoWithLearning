@@ -1,0 +1,36 @@
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8">
+        <link href="/css/core/bootstrap.css" rel="stylesheet">
+        <link href="/css/intro.css" rel="stylesheet">
+    </head>
+    <body>
+        <!--/*@thymesVar id="videoList" type="java.util.List" */-->
+        <!--/*@thymesVar id="videoType" type="com.yosoro.video.domain.video.VideoType" */-->
+        <div class="main-container">
+            <h1 th:text="${videoType.typeName}"></h1>
+            <div class="intro-block">
+                <img th:src="'/imgs/'+${videoType.image}">
+                <div class="intro-describe">
+                    <h4 th:text="${videoType.description}"></h4>
+                </div>
+                <div class="video-block">
+                    <h1>相关视频</h1>
+                    <div style="width:100%;">
+                        <div class="video-card" th:each="video:${videoList}">
+                            <!--/*@thymesVar id="video" type="com.yosoro.video.domain.video.Video"*/-->
+                            <a th:href="'/video/'+${video.videoId}">
+                                <img th:src="'/imgs/'+${videoType.image}">
+                                <p th:text="${video.name}"></p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="/js/core/jquery-3.2.1.js"></script>
+        <script src="/js/core/bootstrap.min.js"></script>
+        <script src="/js/intro.js"></script>
+    </body>
+</html>

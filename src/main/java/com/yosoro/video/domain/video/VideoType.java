@@ -4,6 +4,7 @@ public class VideoType {
     private long id;
     private String typeName;
     private String image;
+    private String description;
 
     public VideoType(long id, String typeName) {
         this.id = id;
@@ -36,12 +37,21 @@ public class VideoType {
         this.image = image;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     @Override
     public String toString() {
         return "VideoType{" +
                 "id=" + id +
                 ", typeName='" + typeName + '\'' +
                 ", image='" + image + '\'' +
+                ", description='" + description + '\'' +
                 '}';
     }
 }

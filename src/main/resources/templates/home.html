@@ -18,8 +18,10 @@
             <div>
                 <!--/*@thymesVar id="subType" type="com.yosoro.video.domain.video.VideoType"*/-->
                 <div class="video-card" th:each="subType:${typeList.subTypes}">
-                    <img th:src="'/imgs/'+${subType.image}"/>
-                    <h4 th:text="${subType.typeName}"></h4>
+                    <a th:href="'/intro/'+${subType.id}">
+                        <img th:src="'/imgs/'+${subType.image}"/>
+                        <h4 th:text="${subType.typeName}"></h4>
+                    </a>
                 </div>
             </div>
         </div>

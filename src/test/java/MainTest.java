@@ -28,7 +28,8 @@ public class MainTest {
     private UserMapper userMapper;
     @Test
     public void test(){
-        videoService.addNewVideoType("页面设计",590519275);
-        videoService.addNewVideoType("PS从入门到放弃",590519275);
+        List<Video> list=videoMapper.getVideoListByTypeId(47937346);
+        for(Video video:list)
+            System.out.println(video);
     }
 }
