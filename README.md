@@ -41,4 +41,6 @@ Commit by Johnnico233
 
 对于阿里云OSS配置
 
-需要对java/com/yosoro/video/oss/OssInstance的accessKey 以及 secret 变量进行修改(若您已经有自己的accessKey以及secret)
+需要对java/com/yosoro/video/oss/OssInstance的accessKey 以及 secret 变量进行修改(若您已经有自己的accessKey以及secret)。
+
+PS:该Demo的阿里云VOD服务会在2018年9月20号结束
