@@ -5,18 +5,35 @@ import com.aliyuncs.exceptions.ClientException;
 import com.aliyuncs.profile.DefaultProfile;
 import com.aliyuncs.vod.model.v20170321.*;
 import com.yosoro.video.domain.video.Video;
-import java.util.List;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.stereotype.Component;
 
+import java.io.IOException;
+import java.util.List;
+import java.util.Properties;
+
+@Component
 public class OssInstance {
-    public final static String accessKey="LTAICFPRKjvaP5IL";
-    public final static String secret="LtA7juhLBSM5bbDIYtXeEplTu167Rd";
-    private final static DefaultProfile profile=DefaultProfile.getProfile("cn-shenzhen",accessKey,secret);
+    private static DefaultProfile profile=null;
     private volatile static DefaultAcsClient client=null;
     public static DefaultAcsClient getDefaultAcsClient(){
         if(client==null){
             synchronized(DefaultAcsClient.class){
-                if (client==null)
+                if (client==null){
+                    if(profile==null){
+                        Properties properties=new Properties();
+                        try{
+                            properties.load(new ClassPathResource("config/application.properties").getInputStream());
+                        }catch (IOException ex){
+                            ex.printStackTrace();
+                        }
+                        String accessKey=properties.getProperty("oss-accessKey");
+                        String secret=properties.getProperty("oss-secret");
+                        profile=DefaultProfile.getProfile("cn-shenzhen",accessKey,secret);
+                    }
                     client=new DefaultAcsClient(profile);
+                }
             }
         }
         return client;
