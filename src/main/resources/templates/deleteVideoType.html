@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div th:fragment="delete-type-block">
+        <!--/*@thymesVar id="typeLists" type="java.util.List" */-->
+        <div class="parent-type-block">
+            <select class="form-control delete-type-select">
+                <!--/*@thymesVar id="typeList" type="com.yosoro.video.domain.video.TypeList" */-->
+                <option value="1" th:each="typeList:${typeLists}" th:text="${typeList.videoType.typeName}"
+                    th:value="${typeList.videoType.id}"></option>
+            </select>
+            <button class="btn btn-danger btn-del-parent-type">删除</button>
+        </div>
+        <!--/*@thymesVar id="typeList" type="com.yosoro.video.domain.video.TypeList" */-->
+        <div class="sub-type-block" th:each="typeList,i:${typeLists}" th:style="${i.index}>0?'display:none':''">
+            <!--/*@thymesVar id="subType" type="com.yosoro.video.domain.video.VideoType" */-->
+            <p th:each="subType:${typeList.subTypes}">
+                <span th:text="${subType.id}"></span>
+                <span th:text="${subType.typeName}"></span><button class="btn btn-danger">删除</button>
+            </p>
+        </div>
+    </div>
+</body>
+</html>

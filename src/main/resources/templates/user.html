@@ -6,62 +6,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link th:href="'/css/core/bootstrap.min.css'" rel="stylesheet">
     <link th:href="'/css/user.css'" rel="stylesheet">
-</head>
+    <link th:href="'/css/createVideoType.css'" rel="stylesheet">
+    <link th:href="'/css/deleteVideoType.css'" rel="stylesheet">
+    <link href="/css/videoManage.css" rel="stylesheet">
+    <link href="/css/header.css" rel="stylesheet"/>
 
+</head>
+    <div th:include="~{header::my-header}"></div>
     <div class="main-container">
         <table>
             <tr >
                 <th class="left-block">
-                    <div class="menu-list" id="user-info-block"><p class="menu-title">用户</p>
+                    <div class="menu-list" id="video-info-block"><p class="menu-title">视频管理</p>
                         <div>
-                            <a>总览</a>
-                            <a>个人信息</a>
-                            <a>用户管理</a>
+                            <a href="/user/videoManage">视频管理</a>
                         </div>
                     </div>
-                    <div class="menu-list" id="message-info-block"><p class="menu-title">留言</p>
+                    <div class="menu-list" id="type-info-block"><p class="menu-title">分类管理</p>
                         <div>
-                            <a>留言管理</a>
-                        </div>
-                    </div>
-                    <div class="menu-list" id="video-info-block"><p class="menu-title">视频</p>
-                        <div>
-                            <a>视频管理</a>
+                            <a href="/user/createVideoType">新增视频分类</a>
+                            <a href="/user/deleteVideoTypePage">删除视频分类</a>
                         </div>
                     </div>
                 </th>
+                <!--/*@thymesVar id="pageType" type="java.lang.String"*/-->
                 <th class="right-block">
-                    <h1>总览</h1>
-                    <!--总览-->
-                    <div style="display: none" class="overview-block">
-                        <div class="overview-user">
-                            <h3>用户信息</h3>
-                            <div>
-                                <div>
-                                    <p><span>用户名:</span><span></span></p>
-                                    <p><span>昵称:</span><span></span></p>
-                                    <p><span>上次登录</span><span id="overview-lastlogin"></span></p>
-                                </div>
-                                <img>
-                            </div>
-                            <p><span>个性签名:</span><span></span></p>
-                        </div>
-                        <div class="overview-follow">
-                            <h3>我关注的用户<button class="btn btn-info">更多</button></h3>
-                            <table>
-                                <tr>
-                                    <th colspan="2">用户</th><th>上一次登录</th><th>关注日期</th>
-                                </tr>
-                                <tr>
-                                    <td><img></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                            </table>
-                            <h2 style="text-align: center">暂无关注过好友</h2>
-                        </div>
-                    </div>
-                    <!--用户信息-->
+                    <h1><span>Overview</span><button th:if="${pageType.equals('videoManage')}" class="btn btn-info">新增视频</button></h1>
                     <div style="display: none" class="user-block" id="userInfo-block">
                         <div class="overview-user" id="user-info-show" >
                             <h3>用户信息<button class="btn btn-primary" id="btn-edit-user-info">编辑</button></h3>
@@ -116,87 +86,9 @@
                             <p id="manage-return-page" style="display:none"></p>
                         </div>
                     </div>
-                    <!--用户管理-->
-                    <div style="display: none" class="user-manager">
-                        <div style="min-height: 400px">
-                            <table>
-                                <tr>
-                                    <th></th><th>账号</th><th>用户名</th><th>上一次登录</th><th colspan="3">操作</th>
-                                </tr>
-                                <tr >
-                                    <td><img ></td>
-                                    <td><a ></a></td>
-                                    <td><a ></a></td>
-                                    <td ></td>
-                                    <td><button class="btn btn-info">修改</button></td>
-                                    <td><button class="btn btn-danger">封禁</button></td>
-                                    <td class="user-id-hide"></td>
-                                </tr>
-
-                            </table>
-                        </div>
-                        <div class="skip-block">
-                            <button class="btn btn-primary" >上一页</button>
-                            <span >1</span>/
-                            <span >2</span><input class="form-control" type="number" id="index">
-                            <button class="btn btn-success">跳转</button>
-                            <button class="btn btn-primary">下一页</button>
-                        </div>
-                    </div>
-
-                    <!--我的留言-->
-                    <div style="display: none" class="user-message">
-                        <h2 style="text-align: center">Sorry,你暂时没有留言过ㄟ( ▔, ▔ )ㄏ</h2>
-                        <div style="min-height: 400px">
-                            <table >
-                                <tr><th>投票标题</th><th>留言内容</th><th>留言时间</th><th colspan="2">操作</th></tr>
-                                <tr>
-                                    <td><a
-                                           >test for title</a></td>
-                                    <td><a>test for message</a></td>
-                                    <td>时间</td>
-                                    <td><button class="btn btn-info">修改</button></td>
-                                    <td><button class="btn btn-danger">删除</button></td>
-                                    <td style="display:none"></td>
-                                    <td  style="display:none"></td>
-                                </tr>
-                            </table>
-                        </div>
-                        <div class="skip-block" >
-                            <button class="btn btn-primary">上一页</button>
-                            <span >1</span>/
-                            <span >2</span><input class="form-control" type="number" >
-                            <button class="btn btn-success">跳转</button>
-                            <button class="btn btn-primary" >下一页</button>
-                        </div>
-                    </div>
-                    <!--留言管理-->
-                    <div style="display: none" class="message-manager">
-                        <h2  style="text-align: center">Sorry,暂时没有留言ㄟ( ▔, ▔ )ㄏ</h2>
-                        <div style="min-height: 400px">
-                            <table >
-                                <tr><th>投票标题</th><th>用户名</th><th>留言内容</th><th>留言时间</th><th colspan="2">操作</th></tr>
-                                <tr >
-                                    <td><a ></a></td>
-                                    <td><a></a></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td><button class="btn btn-danger">删除</button></td>
-                                    <td><button class="btn btn-info">修改</button></td>
-                                    <td style="display: none;"></td>
-                                    <td style="display: none"></td>
-                                </tr>
-                            </table>
-                        </div>
-                        <div class="skip-block">
-                            <button class="btn btn-primary">上一页</button>
-                            <span>1</span>/
-                            <span >2</span><input class="form-control" type="number" >
-                            <button class="btn btn-success">跳转</button>
-                            <button class="btn btn-primary" >下一页</button>
-                        </div>
-                    </div>
-
+                    <div th:if="${pageType.equals('addVideoType')}" th:include="~{createVideoType::type-block}" class="createVideoTypeBlock"></div>
+                    <div th:if="${pageType.equals('deleteVideoType')}" th:include="~{deleteVideoType::delete-type-block}" class="deleteVideoTypeBlock"></div>
+                    <div th:if="${pageType.equals('videoManage')}" th:include="~{videoManage::video-block}" class="video-manage-block"></div>
                 </th>
             </tr>
         </table>
@@ -205,5 +97,7 @@
     <script th:src="'/js/core/jquery-3.2.1.js'"></script>
     <script th:src="'/js/core/popper.min.js'"></script>
     <script th:src="'/js/core/bootstrap.js'"></script>
+    <script src="/js/user.js"></script>
+    <script src="/js/header.js"></script>
 </body>
 </html>

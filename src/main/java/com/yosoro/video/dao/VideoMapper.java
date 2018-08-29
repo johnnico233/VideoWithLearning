@@ -16,10 +16,17 @@ public interface VideoMapper {
     List<TypeList> getAllVideoTypeList();
     int updateVideoInfo(Video video);
     int deleteVideoInfo(String videoId);
-    int addNewVideoType(Map<String,Object> map);
+    void addNewVideoType(Map<String,Object> map);
     int updateVideoType(@Param("name")String name,@Param("id") long id);
     void deleteVideoType(Map<String,Object> map);
-    List<TypeList> getAllVideoTypeListByRange(int start);
+    List<TypeList> getAllVideoTypeListByRange();
     List<Video> getVideoListByTypeId(long videoId);
     VideoType getVideoTypeById(long typeId);
+    List<VideoType> getVideoOnlyParentType();
+    List<String> getSubTypeImageName(long id);
+    int subtractParentTypeCount(long id);
+    String getTypeImageName(long id);
+    List<Video> getVideoByRange(@Param("start") int start,@Param("size") int size);
+    int getVideoSize();
+    List<Video> getReferVideoByTypeId(long id);
 }

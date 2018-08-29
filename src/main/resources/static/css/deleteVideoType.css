@@ -1,0 +1,35 @@
+.deleteVideoTypeBlock{
+    width:80%;
+    margin:0 auto;
+}
+.delete-type-select{
+    display: inline-block;
+    width:80%;
+}
+.btn-del-parent-type{
+    display: inline-block;
+    width:90px;
+    margin-top: -6px;
+}
+.sub-type-block{
+    padding:10px 0px;
+    width:90%;
+    margin:10px auto;
+    background: #fff;
+}
+.sub-type-block p{
+    line-height: 40px;
+    margin-left:10px;
+}
+.sub-type-block span{
+    display: inline-block;
+    width:62%;
+}
+.sub-type-block p span:first-of-type{
+    width:18%;
+}
+.sub-type-block button{
+    display: inline-block;
+    width:90px;
+    margin-left:4px;
+}

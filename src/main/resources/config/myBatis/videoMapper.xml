@@ -17,8 +17,18 @@
         <association property="videoType" resultMap="videoTypeMap"/>
     </resultMap>
     <select id="getVideoById" resultMap="videoMap" parameterType="java.lang.String">
-        select * from video where video_id = #{id};
+        select * from video v1 left join video_type v2 on v1.video_type = v2.type_id where video_id = #{id};
     </select>
+    <select id="getVideoByRange" resultMap="videoMap">
+        select * from video v1 left join video_type v2 on v1.video_type = v2.type_id limit #{start},#{size};
+    </select>
+    <select id="getVideoSize" resultType="java.lang.Integer">
+        select COUNT(*) from video;
+    </select>
+    <select id="getReferVideoByTypeId" resultMap="videoMap" parameterType="java.lang.Long">
+        select * from video v1 left join video_type v2 on v1.video_type = v2.type_id where video_type = #{id}
+    </select>
+
     <!--videoType's result map-->
     <resultMap id="videoTypeMap" type="com.yosoro.video.domain.video.VideoType">
         <id property="id" column="type_id"/>
@@ -26,6 +36,7 @@
         <result property="image" column="image"/>
         <result property="createTime" column="create_time"/>
         <result property="count" column="sub_count"/>
+        <result property="description" column="type_description"/>
     </resultMap>
     <!--videoList's result map-->
     <resultMap id="videoListMap" type="com.yosoro.video.domain.video.TypeList">
@@ -35,21 +46,21 @@
     <resultMap id="videoListMapByRange" type="com.yosoro.video.domain.video.TypeList">
         <association property="videoType" resultMap="videoTypeMap"/>
         <collection property="subTypes" select="getVideoSubTypeListByRange" javaType="java.util.List"
-                    column="{id=type_id,start=idx,end=l}"/>
+                    column="{id=type_id"/>
     </resultMap>
     <!--select the video type with it's sub types-->
     <select id="getAllVideoTypeList" resultMap="videoListMap">
         select * from video_type where father_id is null;
     </select>
     <select id="getAllVideoTypeListByRange" resultMap="videoListMapByRange" parameterType="java.lang.Integer">
-        select *,#{start} as idx,3 as l from video_type where father_id is null and sub_count > 0 limit #{start},3;
+        select * from video_type where father_id is null and sub_count > 0 ;
     </select>
     <!--select the video sub type-->
     <select id="getVideoSubTypeList" resultMap="videoTypeMap" parameterType="java.lang.Long">
         select * from video_type where father_id = #{id}
     </select>
     <select id="getVideoSubTypeListByRange" resultMap="videoTypeMap" parameterType="java.util.Map">
-        select * from video_type where father_id = #{id} limit #{start},#{end};
+        select * from video_type where father_id = #{id};
     </select>
     <!--update the video info-->
     <update id="updateVideoInfo" parameterType="com.yosoro.video.domain.video.Video">
@@ -66,9 +77,9 @@
         delete from video where video_id = #{videoId}
     </delete>
     <!--operate for the video type-->
-    <insert id="addNewVideoType">
-        insert into video_type (type_id,type_name,father_id) values (#{typeId},#{typeName},#{fatherId})
-    </insert>
+    <select id="addNewVideoType" statementType="CALLABLE">
+        call add_new_video_type(#{typeId},#{typeName},#{fatherId},#{description},#{image},#{result,mode=OUT,jdbcType=INTEGER})
+    </select>
     <update id="updateVideoType">
         update video_type set type_name = #{name} where type_id = #{id}
     </update>
@@ -80,5 +91,17 @@
     </select>
     <select id="getVideoTypeById" resultMap="videoTypeMap" parameterType="java.lang.Long">
         select * from video_type where type_id = #{id};
+    </select>
+    <select id="getVideoOnlyParentType" resultMap="videoTypeMap">
+        select * from video_type where father_id is null;
+    </select>
+    <select id="getSubTypeImageName" resultType="java.lang.String" parameterType="java.lang.Long">
+        SELECT image FROM video_type where father_id = #{id} and image != "default.jpg";
+    </select>
+    <update id="subtractParentTypeCount" parameterType="java.lang.Long">
+        update video_type set sub_count = sub_count - 1 where type_id = #{id};
+    </update>
+    <select id="getTypeImageName" resultType="java.lang.String" parameterType="java.lang.Long">
+        select image from video_type where type_id = #{id} and image != "default.jpg";
     </select>
 </mapper>

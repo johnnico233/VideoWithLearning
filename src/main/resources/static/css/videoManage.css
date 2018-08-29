@@ -1,0 +1,32 @@
+.video-manage-item{
+    margin:10px 0;
+}
+.video-manage-item img,.video-manage-item button,.video-manage-item span,.video-manage-item div{
+    display: inline-block;
+    text-align: center;
+    vertical-align: center;
+}
+.video-manage-item div > span{
+    display: block;
+    width:100%;
+}
+.video-manage-item a{
+    color:#000;
+    text-decoration: none;
+    margin-left:10%;
+}
+.video-manage-item img{
+    width:50px;
+    height:50px;
+}
+.video-manage-item span,.video-manage-item div{
+    width:30%;
+}
+.video-manage-item button{
+    width:90px;
+}
+h1 >button{
+    float:right;
+    display:inline-block;
+    margin-top: 5px;
+}

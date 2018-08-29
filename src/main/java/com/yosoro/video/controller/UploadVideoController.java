@@ -4,6 +4,7 @@ import com.aliyuncs.vod.model.v20170321.CreateUploadVideoResponse;
 import com.yosoro.video.domain.video.Video;
 import com.yosoro.video.domain.result.Result;
 import com.yosoro.video.domain.result.ResultCode;
+import com.yosoro.video.domain.video.VideoType;
 import com.yosoro.video.oss.OssInstance;
 import com.yosoro.video.service.VideoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,9 @@ public class UploadVideoController {
         Video video=new Video();
         video.setName(title);
         video.setDescribe(describe);
-        video.getVideoType().setId(Long.parseLong(type));
+        VideoType videoType=new VideoType();
+        videoType.setId(Long.parseLong(type));
+        video.setVideoType(videoType);
         System.out.println(video);
         return OssInstance.getUploadVideoResponse(video,fileName);
     }

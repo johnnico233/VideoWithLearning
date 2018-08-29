@@ -39,3 +39,11 @@ h1{
     display:inline-block;
     width:20%;
 }
+.progress-block{
+    display:none;
+    margin:10px 0;
+}
+.progress-text{
+    display: inline-block;
+    margin-left:5%
+}

@@ -14,7 +14,7 @@
         <p><input type="text" class="form-control search-content"><button class="btn btn-primary search-btn">Search</button></p>
         <!--/*@thymesVar id="typeList" type="com.yosoro.video.domain.video.TypeList"*/-->
         <div class="video-block" th:each="typeList:${typeLists}">
-            <h1><span th:text="${typeList.videoType.typeName}"></span><a href="#">更多</a></h1>
+            <h1><span th:text="${typeList.videoType.typeName}"></span></h1>
             <div>
                 <!--/*@thymesVar id="subType" type="com.yosoro.video.domain.video.VideoType"*/-->
                 <div class="video-card" th:each="subType:${typeList.subTypes}">

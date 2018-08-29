@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <!--/*@thymesVar id="parentTypeList" type="java.util.List" */-->
+    <div th:fragment="type-block" >
+        <p><span>分类名字</span><input type="text" name="type-title" class="form-control"/></p>
+        <p> <span>分类类型</span>
+            <select class="form-control" name="type-of">
+                <option value='-1'>新分类</option>
+                <!--/*@thymesVar id="parentType" type="com.yosoro.video.domain.video.VideoType"*/-->
+                <option th:each="parentType:${parentTypeList}" th:value="${parentType.id}"
+                        th:text="${parentType.typeName}"></option>
+            </select>
+        </p>
+        <p style="display: none">
+            <span>分类描述</span>
+            <textarea name="type-description" cols="10" rows="3" class="form-control"></textarea>
+        </p>
+        <p style="display: none"><span>图片</span><input type="file" name="type-photo" class="form-control"></p>
+        <p><button class="btn btn-primary btn-create-type">创建分类</button></p>
+    </div>
+</body>
+</html>

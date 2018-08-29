@@ -3,12 +3,13 @@ package com.yosoro.video.domain.video;
 import java.util.Date;
 
 public class VideoType {
-    private long id;
-    private String typeName;
-    private String image;
-    private String description;
-    private Date createTime;
-    private int count;
+    protected long id;
+    protected String typeName;
+    protected String image;
+    protected String description;
+    protected Date createTime;
+    protected int count;
+    protected long parentId;
 
     public VideoType(long id, String typeName) {
         this.id = id;
@@ -65,6 +66,14 @@ public class VideoType {
         this.count = count;
     }
 
+    public long getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(long parentId) {
+        this.parentId = parentId;
+    }
+
     @Override
     public String toString() {
         return "VideoType{" +
@@ -74,6 +83,7 @@ public class VideoType {
                 ", description='" + description + '\'' +
                 ", createTime=" + createTime +
                 ", count=" + count +
+                ", parentId=" + parentId +
                 '}';
     }
 }

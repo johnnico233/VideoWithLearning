@@ -1,0 +1,28 @@
+table,.title-block{
+    width:1200px;
+    margin:0 auto;
+}
+.title-block{
+    margin-top:10px;
+}
+.left-block{
+    width:800px;
+    margin:0 25px;
+}
+.right-block{
+    width:300px;
+    margin:0 25px;
+    vertical-align: top;
+}
+.refer-card{
+    color:#000;
+    text-decoration: none;
+}
+.refer-card span, .refer-card img{
+    display: inline-block;
+    margin: 10px;
+}
+.refer-card img{
+    width:50px;
+    height:50px;
+}

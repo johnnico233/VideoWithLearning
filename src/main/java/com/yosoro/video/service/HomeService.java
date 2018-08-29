@@ -13,7 +13,7 @@ public class HomeService {
     @Autowired
     private VideoMapper videoMapper;
     public void getHomeVideoTypes(Model model, int index){
-        List<TypeList> typeLists=videoMapper.getAllVideoTypeListByRange((index-1)*3);
+        List<TypeList> typeLists=videoMapper.getAllVideoTypeListByRange();
         System.out.println(typeLists);
         model.addAttribute("typeLists",typeLists);
     }

@@ -3,8 +3,9 @@ var data={};
 $(function(){
     setVideoType();
     $('.upload-confirm').on("click",function(){
+        $(".upload-confirm").attr("disabled",true);
+        $(".progress-block").css("display","block");
         var file=$("input[name='videoFile']")[0].files[0];
-        console.log(file);
         if(file!=undefined)
             sendVideoDataToServer("/upload/file",$("input[name='videoName']").val(),
                 $("textarea[name='videoDescribe']").val(),data[currentIndex].find("option:selected").val(),file,function(json){
@@ -38,6 +39,8 @@ $(function(){
                         // 文件上传进度，单位：字节
                         'onUploadProgress': function (uploadInfo, totalSize, loadedPercent) {
                             console.log("onUploadProgress:file:" + uploadInfo.file.name + ", fileSize:" + totalSize + ", percent:" + Math.ceil(loadedPercent * 100) + "%");
+                            $(".progress").css("width",Math.ceil(loadedPercent * 100)+"%");
+                            $(".progress-text").html(Math.ceil(loadedPercent * 100)+"%");
                         },
                         // 上传凭证超时
                         'onUploadTokenExpired': function (uploadInfo) {

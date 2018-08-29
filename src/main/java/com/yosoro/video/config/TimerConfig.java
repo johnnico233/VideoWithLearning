@@ -19,7 +19,7 @@ public class TimerConfig {
     @Bean
     public ThreadPoolTaskScheduler taskScheduler(ConcurrentHashMap<String,EmailTimer> map){
         ThreadPoolTaskScheduler scheduler=new ThreadPoolTaskScheduler();
-        scheduler.setPoolSize(5);
+        scheduler.setPoolSize(3);
         scheduler.initialize();
         scheduler.schedule(()->{
             Enumeration<String> keys=map.keys();

@@ -6,21 +6,45 @@
     <link href="https://g.alicdn.com/de/prismplayer/2.7.2/skins/default/aliplayer-min.css" rel="stylesheet">
     <link href="/css/video.css" rel="stylesheet">
     <link href="/css/core/bootstrap.css" rel="stylesheet">
+    <link href="/css/header.css" rel="stylesheet"/>
 </head>
 <body>
+    <div th:include="~{header::my-header}"></div>
     <!--/*@thymesVar id="videoUrl" type="java.lang.String" */-->
     <input id="videoUrl" th:value="${videoUrl}" style="display:none;"/>
     <!--/*@thymesVar id="video" type="com.yosoro.video.domain.video.Video"*/-->
-    <div class="my-container">
+    <div class="title-block">
         <h1 th:text="${video.name}"></h1>
         <p th:text="${#dates.format(video.uploadTime,'yyyy-MM-dd hh:mm:ss')}"></p>
         <p th:text="'浏览次数: '+${video.getViewCount()}"></p>
-        <div class="prism-player" id="J_prismPlayer"></div>
     </div>
+    <table>
+        <tr>
+            <td class="left-block">
+                <div class="my-container">
+                    <div class="prism-player" id="J_prismPlayer"></div>
+                </div>
+            </td>
+            <td class="right-block">
+                <h4>相关视频</h4>
+                <div style="overflow-y: auto">
+                    <!--/*@thymesVar id="referList" type="java.util.List" */-->
+                    <!--/*@thymesVar id="refer" type="com.yosoro.video.domain.video.Video"*/-->
+                    <div th:if="${referList}!=null" th:each="refer:${referList}"
+                         th:style="${refer.videoId.equals(video.videoId)}?'background: #cdcdcd;':''">
+                        <a th:href="'/video/'+${refer.videoId}" class="refer-card">
+                            <img th:src="'/imgs/'+${refer.videoType.image}"><span th:text="${refer.name}"></span>
+                        </a>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+
     <script src="https://g.alicdn.com/de/prismplayer/2.7.2/aliplayer-h5-min.js"></script>
     <script type="text/javascript" charset="utf-8" src="https://player.alicdn.com/aliplayer/presentation/js/aliplayercomponents.min.js"></script>
-
     <script src="/js/core/jquery-3.2.1.js"></script>
     <script src="/js/video.js"></script>
+    <script src="/js/header.js"></script>
 </body>
 </html>

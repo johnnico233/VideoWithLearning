@@ -1,7 +1,5 @@
 package com.yosoro.video.domain.timer;
 
-import javax.servlet.http.HttpSession;
-
 public class EmailTimer implements ScheduleTimer{
     private String mail;
     private volatile long startTime;

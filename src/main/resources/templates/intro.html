@@ -1,12 +1,15 @@
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="utf-8">
         <link href="/css/core/bootstrap.css" rel="stylesheet">
         <link href="/css/intro.css" rel="stylesheet">
+        <link href="/css/header.css" rel="stylesheet"/>
     </head>
     <body>
         <!--/*@thymesVar id="videoList" type="java.util.List" */-->
         <!--/*@thymesVar id="videoType" type="com.yosoro.video.domain.video.VideoType" */-->
+        <div th:include="~{header::my-header}"></div>
         <div class="main-container">
             <h1 th:text="${videoType.typeName}"></h1>
             <div class="intro-block">
@@ -16,7 +19,7 @@
                 </div>
                 <div class="video-block">
                     <h1>相关视频</h1>
-                    <div style="width:100%;">
+                    <div style="width:100%;" th:if="${videoList}!=null">
                         <div class="video-card" th:each="video:${videoList}">
                             <!--/*@thymesVar id="video" type="com.yosoro.video.domain.video.Video"*/-->
                             <a th:href="'/video/'+${video.videoId}">
@@ -25,6 +28,9 @@
                             </a>
                         </div>
                     </div>
+                    <div style="width:100%" th:if="${videoList.size()}==0">
+                        <h3>暂无视频</h3>
+                    </div>
                 </div>
             </div>
         </div>
@@ -32,5 +38,6 @@
         <script src="/js/core/jquery-3.2.1.js"></script>
         <script src="/js/core/bootstrap.min.js"></script>
         <script src="/js/intro.js"></script>
+        <script src="/js/header.js"></script>
     </body>
 </html>

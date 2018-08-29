@@ -9,6 +9,12 @@ $(function(){
     })
     setSwitchBlock();
     setLoginBlock();
+    $(".control-btn").on("click",function(){
+        window.location.href="/user/createVideoType";
+    });
+    $(".logout-btn").on("click",function () {
+        window.location.href="/user/logout";
+    })
 })
 function emailValidSetting(){
     var email=$("input[name='mail']");
@@ -152,6 +158,7 @@ function setLoginBlock(){
         }
     });
 }
+
 function sendData2Server(url,data,done){
     $.ajax({
         url:url,

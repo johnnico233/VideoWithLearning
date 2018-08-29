@@ -7,14 +7,14 @@
 <body>
     <div th:fragment="my-header">
         <nav class="navbar my-header">
-            <a class="navbar-brand">Navbar</a>
+            <a class="navbar-brand" href="/" style="color:#fff;text-decoration: none">首页</a>
             <div class="form-inline login-info">
                 <p th:if="${#session.getAttribute('videoUser')}!=null"
                    th:text="${((#session.getAttribute('videoUser'))).userName}"></p>
-                <button class="btn btn-primary" th:if="${#session.getAttribute('videoUser')}!=null">个人中心</button>
+                <button class="btn btn-primary control-btn" th:if="${#session.getAttribute('videoUser')}!=null">管理中心</button>
                 <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
                         th:if="${#session.getAttribute('videoUser')}==null">登录</button>
-                <button class="btn btn-danger" th:if="${#session.getAttribute('videoUser')}!=null">退出</button>
+                <button class="btn btn-danger logout-btn" th:if="${#session.getAttribute('videoUser')}!=null">退出</button>
             </div>
         </nav>
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
